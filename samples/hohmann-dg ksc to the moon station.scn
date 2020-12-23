@@ -1,0 +1,68 @@
+BEGIN_DESC
+DeltaGlider going from KSC to a docking with station in lunar orbit.
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 51983.0383878207
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship GL-01
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET GL-01
+  MODE Cockpit
+  FOV 60.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Map
+  REF Earth
+  OTARGET Moon
+  TRACK ON
+END_MFD
+
+
+BEGIN_SHIPS
+GL-01:DeltaGlider
+  STATUS Landed Earth
+  POS -80.6849176 28.5891808
+  HEADING 329.01
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 402 94 0 0
+  XPDR 0
+  GEAR 1 1.0000
+END
+Luna-OB1:Wheel
+  STATUS Orbiting Moon
+  RPOS -2068177.97 855187.34 -5.59
+  RVEL -565.577 -1367.779 -0.006
+  AROT 0.00 0.00 174.43
+  VROT -0.00 -0.00 10.00
+  IDS 0:560 100 1:564 100
+  XPDR 494
+END
+END_SHIPS
+
+BEGIN_uap
+  >GL-01:runway_off(engine=main,thrust=0.32,altitude=1000,target=Moon,heading=90,v1=170,gear_key=g),
+  lift_off(engine=main,mode=2,target=Moon,pitch_tgt=60,pitch_duration=130,off_duration=1),
+  trans_orbit(engine=main,kind=0,target=Moon,apoapsis=200000,periapsis=200000,ta=0,mode=0),
+  align(engine=main,target=Moon,rinc_delta=0.1),
+  hohmann(engine=main,target=Moon,tgt_orbit_alt=100000),
+  align(engine=main,target=Luna-OB1),
+  sync_orbit(engine=main,target=Luna-OB1),
+  approach(engine=main,target=Luna-OB1,max_velocity=50,tgt_distance=1500),tools(type=0,key=k),
+  dock(target=Luna-OB1,port=0,with_port=0).
+END

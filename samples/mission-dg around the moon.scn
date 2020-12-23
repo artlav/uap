@@ -1,0 +1,66 @@
+BEGIN_DESC
+Take off, do a loop around the Moon, land back to where you started from
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 52006.7497330096
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship SH-02
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET SH-02
+  MODE Cockpit
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Map
+  REF Moon
+END_MFD
+
+
+BEGIN_SHIPS
+GL-NT:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:4
+  POS -33.4375000 41.1315932
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+END
+GL-02:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:2
+  POS -33.4450804 41.1217033
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+END
+END_SHIPS
+
+BEGIN_uap
+  >GL-NT:
+  lift_off(mode=0,engine=hover,heading=70),tools(type=0,key=g),
+  lift_off(mode=2,engine=main,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),
+  trans_orbit(engine=main,heading=70,apoapsis=500000,periapsis=20000,ta=0),attitude(mode=2),
+  tools(type=9,target=GL-02,wait=150000),
+  tools(type=8,target=GL-02,wait=140000),
+  maneuvre(engine=main,mode=1,target=,orientation=1,dv=1700,dt=10,level=1),
+  tools(type=0,key=g),
+  get_on_pad(engine=hover,tgt_lat=41.121702,tgt_lon=-33.429921).
+END

@@ -1,0 +1,81 @@
+BEGIN_DESC
+Some back and forth maneuvring, with subsequent docking
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 51982.5300777610
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship GL-01
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET GL-01
+  MODE Extern
+  POS 107.00 62.79 -22.70
+  TRACKMODE GlobalFrame
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Orbit
+  PROJ Ship
+  FRAME Ecliptic
+  ALT
+  REF Earth
+END_MFD
+
+BEGIN_PANEL
+END_PANEL
+
+BEGIN_SHIPS
+GL-01:DeltaGlider
+  STATUS Orbiting Earth
+  RPOS 4075242.69 4243304.90 -3274720.05
+  RVEL 6124.808 -3683.232 2849.404
+  AROT -33.61 -21.24 -16.71
+  AFCMODE 7
+  PRPLEVEL 0:0.553000 1:0.899451
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  AAP 0:0 0:0 0:0
+END
+GL-02:DeltaGlider
+  STATUS Orbiting Earth
+  RPOS 4075342.69 4243304.90 -3274720.05
+  RVEL 6124.808 -3683.232 2849.404
+  AROT -33.61 -21.24 -16.71
+  AFCMODE 7
+  PRPLEVEL 0:0.553000 1:0.899451
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  AAP 0:0 0:0 0:0
+END
+END_SHIPS
+
+BEGIN_uap
+  >GL-01:
+  maneuvre(engine=main,target=GL-02,mode=0,orientation=2,dv=100,dt=2,level=1),
+  maneuvre(engine=main,target=GL-02,mode=0,orientation=3,dv=100,dt=2,level=1),
+  maneuvre(engine=main,mode=0,orientation=0,dv=100,dt=2,level=1),
+  maneuvre(engine=main,mode=0,orientation=1,dv=100,dt=2,level=1),
+  maneuvre(engine=main,mode=1,orientation=0,dv=100,dt=10,level=1),
+  maneuvre(engine=main,mode=1,orientation=1,dv=100,dt=10,level=1),
+  maneuvre(engine=main,target=GL-02,mode=1,orientation=3,dv=70,dt=2,level=1),
+  maneuvre(engine=main,target=GL-02,mode=1,orientation=2,dv=70,dt=2,level=1),
+  approach(engine=main,target=GL-02,max_velocity=20,tgt_distance=200),
+  tools(type=0,target=GL-02,key=k),
+  tools(type=0,key=k),
+  dock(target=GL-02,port=0,with_port=0). 
+END

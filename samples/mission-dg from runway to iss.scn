@@ -1,0 +1,70 @@
+BEGIN_DESC
+Full Mission - DG takes off from KSC to docking with ISS
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 51982.2660330232
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship GL-01
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET GL-01
+  MODE Cockpit
+  FOV 60.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Map
+  REF Earth
+  OTARGET ISS
+  TRACK ON
+END_MFD
+
+
+BEGIN_SHIPS
+ISS:ProjectAlpha_ISS
+  STATUS Orbiting Earth
+  RPOS -6415259.53 1764414.31 1053812.78
+  RVEL 1564.658 7121.716 -2452.234
+  AROT 101.29 -25.00 176.38
+  VROT -0.04 0.04 0.05
+  IDS 0:588 100 1:586 100 2:584 100 3:582 100 4:580 100
+  NAVFREQ 0 0
+  XPDR 466
+END
+GL-01:DeltaGlider
+  STATUS Landed Earth
+  POS -80.6849176 28.5891808
+  HEADING 329.01
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 402 94 0 0
+  XPDR 0
+  GEAR 1 1.0000
+END
+END_SHIPS
+
+BEGIN_uap
+  >GL-01:tools(type=7,param=2),
+  runway_off(engine=main,thrust=0.3,altitude=1000,target=ISS,v1=170,gear_key=g),
+  tools(type=7,param=1),
+  lift_off(engine=main,mode=2,target=ISS,pitch_tgt=60,pitch_duration=130,off_duration=1),
+  tools(type=7,param=3),
+  trans_orbit(engine=main,kind=0,target=ISS,apoapsis=160000,periapsis=160000),
+  align(target=ISS),
+  sync_orbit(engine=main,target=ISS),
+  approach(engine=main,target=ISS,max_velocity=40,tgt_distance=1500),tools(type=0,key=k),
+  dock(target=ISS,port=0,with_port=0). 
+END

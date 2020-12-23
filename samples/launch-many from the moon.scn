@@ -1,0 +1,189 @@
+BEGIN_DESC
+Various vessels getting into orbit in variety of ways.
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 52006.7485859146
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship GL-N2
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET GL-N2
+  MODE Extern
+  POS 37.28 -110.01 -78.04
+  TRACKMODE GlobalFrame
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Orbit
+  PROJ Ship
+  FRAME Ecliptic
+  ALT
+  REF Moon
+END_MFD
+
+
+BEGIN_SHIPS
+ISS:ProjectAlpha_ISS
+  STATUS Orbiting Earth
+  RPOS 5695705.84 -3586359.40 -91437.11
+  RVEL -3847.163 -6183.922 2490.809
+  AROT 30.00 0.00 50.00
+  AFCMODE 7
+  IDS 0:588 100 1:586 100 2:584 100 3:582 100 4:580 100
+  NAVFREQ 0 0
+  XPDR 466
+END
+Mir:Mir
+  STATUS Orbiting Earth
+  RPOS -3052346.96 362248.81 5922718.83
+  RVEL -6873.770 -215.640 -3524.696
+  AROT 0.00 -45.00 90.00
+  AFCMODE 7
+  IDS 0:540 100 1:542 100 2:544 100
+  XPDR 482
+END
+Luna-OB1:Wheel
+  STATUS Orbiting Moon
+  RPOS -2007730.17 988799.84 -4.97
+  RVEL -653.937 -1327.801 -0.005
+  AROT 0.00 0.00 -96.56
+  VROT 0.00 -0.00 10.00
+  AFCMODE 7
+  IDS 0:560 100 1:564 100
+  XPDR 494
+END
+PB-01:ShuttlePB
+  STATUS Landed Moon
+  BASE Brighton Beach:2
+  POS -33.4450804 41.1217033
+  HEADING 220.00
+  AFCMODE 7
+  PRPLEVEL 0:1.000000
+  NAVFREQ 484 124
+END
+GL-01:DeltaGlider
+  STATUS Orbiting Earth
+  RPOS 5390153.75 1364151.84 3110487.66
+  RVEL -168.583 -156.437 360.545
+  AROT -98.35 -18.48 63.13
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+GL-NT:DeltaGlider
+  STATUS Landed Moon
+  POS -33.4299200 41.1282970
+  HEADING 72.92
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+SH-02:ShuttleA
+  STATUS Landed Moon
+  POS -33.4299200 41.1217030
+  HEADING 46.10
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0
+  XPDR 0
+  PODANGLE 0.0000 0.0000
+  DOCKSTATE 0 0.0000
+  AIRLOCK 0 0.0000
+  GEAR 0 0.0000
+  PAYLOAD MASS -0.0 0
+END
+GL-02:DeltaGlider
+  STATUS Orbiting Mars
+  RPOS 971685.13 146476.38 -3244371.70
+  RVEL 204.819 -98.686 56.927
+  AROT 80.08 -23.11 18.16
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+GL-NT-H:Deltaglider
+  STATUS Orbiting Moon
+  RPOS 1161812.53 1171782.64 -545683.07
+  RVEL 1.437 0.054 3.174
+  AROT 15.74 -10.12 42.77
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+GL-NT-R:Deltaglider
+  STATUS Orbiting Moon
+  RPOS 1161781.91 1171811.76 -545685.75
+  RVEL 1.437 0.054 3.174
+  AROT -164.26 10.12 137.23
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+GL-N1:Deltaglider
+  STATUS Orbiting Moon
+  RPOS 1161791.90 1171814.44 -545658.71
+  RVEL 1.437 0.054 3.174
+  AROT 15.74 -10.12 42.77
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+GL-N2:Deltaglider
+  STATUS Orbiting Moon
+  RPOS 1161809.75 1171797.32 -545657.47
+  RVEL 1.437 0.054 3.174
+  AROT 15.74 -10.12 42.77
+  AFCMODE 7
+  PRPLEVEL 0:1.000000 1:1.000000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  AAP 0:0 0:0 0:0
+END
+END_SHIPS
+
+BEGIN_uap
+ >GL-NT:lift_off(mode=3,engine=main,heading=70,pitch_tgt=40),tools(type=0,key=g),lift_off(mode=2,engine=main,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),trans_orbit(engine=main,apoapsis=20000,periapsis=20000,ta=0,azimuth=70,pitch=30,pitch_time=10).
+ >GL-N1:lift_off(mode=0,engine=hover,heading=70),tools(type=0,key=g),lift_off(mode=2,engine=main,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),trans_orbit(engine=main,apoapsis=20000,periapsis=20000,ta=0,azimuth=70,pitch=30,pitch_time=10).
+ >GL-N2:lift_off(mode=0,engine=hover,heading=70),tools(type=0,key=g),lift_off(mode=2,engine=main,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),trans_orbit(engine=maininv,apoapsis=20000,periapsis=20000,ta=0,azimuth=70,pitch=30,pitch_time=10).
+ >GL-NT-H:lift_off(mode=2,engine=hover,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=2),trans_orbit(engine=hover,apoapsis=20000,periapsis=20000,ta=0,azimuth=70,pitch=30,pitch_time=10).
+ >GL-NT-R:lift_off(mode=0,engine=hover,heading=250,altitude=120),tools(type=0,key=g),lift_off(mode=2,engine=retro,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),trans_orbit(engine=retro,apoapsis=20000,periapsis=20000,ta=0,
+ azimuth=70,pitch=30,pitch_time=10).
+ >SH-02:lift_off(mode=0,engine=hover,heading=70),tools(type=0,key=g),lift_off(mode=2,engine=main,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),trans_orbit(engine=main,apoapsis=20000,periapsis=20000,ta=0,azimuth=70,pitch=30,pitch_time=10).
+ >PB-01:lift_off(mode=0,engine=hover,heading=70),tools(type=0,key=g),lift_off(mode=2,engine=main,heading=70,pitch_tgt=40,pitch_duration=10,off_duration=0),trans_orbit(engine=main,apoapsis=20000,periapsis=20000,ta=0,azimuth=70,pitch=30,pitch_time=10).
+END

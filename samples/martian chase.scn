@@ -1,0 +1,108 @@
+BEGIN_DESC
+Shuttle-A 1 takes off for Mars orbit, Shuttle-A 2 chases it.
+Suggested by mjanicki
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 51983.2525693519
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship SH-02
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET SH-02
+  MODE Extern
+  POS 59.99 92.72 -35.95
+  TRACKMODE TargetRelative
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE Orbit
+  PROJ Ship
+  FRAME Ecliptic
+  REF Mars
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Surface
+  SPDMODE 1
+END_MFD
+
+BEGIN_PANEL
+END_PANEL
+
+
+BEGIN_SHIPS
+GL-01:DeltaGlider
+  STATUS Landed Mars
+  POS -135.4300000 12.7400000
+  HEADING 107.60
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+END
+SH-01:ShuttleA
+  STATUS Landed Mars
+  BASE Olympus:2
+  POS -135.4300000 12.7383100
+  HEADING 55.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0
+  XPDR 0
+  PODANGLE 0.0000 0.0000
+  DOCKSTATE 0 0.0000
+  AIRLOCK 0 0.0000
+  GEAR 0 0.0000
+  PAYLOAD MASS 3.7 0
+END
+SH-02:ShuttleA
+  STATUS Landed Mars
+  BASE Olympus:3
+  POS -135.4300000 12.7366200
+  HEADING 55.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0
+  XPDR 0
+  PODANGLE 0.0000 0.0000
+  DOCKSTATE 0 0.0000
+  AIRLOCK 0 0.0000
+  GEAR 0 0.0000
+  PAYLOAD MASS 3.7 0
+END
+END_SHIPS
+
+BEGIN_uap
+  $SH-01:lift_off(engine=main,mode=3,heading=70,altitude=300,pitch_tgt=45,pitch_duration=15,off_duration=1,stage=0),
+  tools(type=0,key=g),
+  lift_off(engine=main,mode=2,heading=70,pitch_tgt=65,pitch_duration=20,off_duration=30,stage=0),
+  trans_orbit(engine=main,kind=0,apoapsis=450000,periapsis=450000,mode=0),
+  attitude(engine=main,mode=0),
+  attitude(engine=main,mode=2).
+  >SH-02:tools(type=4,target=SH-01),
+  tools(type=1,wait=75),
+  lift_off(engine=main,mode=3,target=SH-01,altitude=300,pitch_tgt=35,pitch_duration=10,off_duration=2),
+  tools(type=0,key=g),
+  lift_off(engine=main,mode=2,target=SH-01,pitch_tgt=55,pitch_duration=10,off_duration=0),
+  trans_orbit(engine=main,kind=0,target=SH-01,apoapsis=250000,periapsis=250000,mode=0),
+  attitude(engine=main,mode=0),
+  attitude(engine=main,mode=2),
+  tools(type=5,target=SH-01),
+  align(engine=main,target=SH-01,rinc_delta=0.1),
+  attitude(engine=main,mode=2),
+  sync_orbit(engine=main,target=SH-01,max_dv_to_use=400,tgt_distance=50000,minimize=1),
+  attitude(engine=main,mode=2),
+  approach(engine=main,target=SH-01,max_velocity=100,tgt_distance=3000),
+  attitude(engine=main,mode=2),
+  tools(type=0,target=SH-01,key=k),
+  tools(type=0,key=k),
+  dock(target=SH-01,port=0,with_port=0).
+END

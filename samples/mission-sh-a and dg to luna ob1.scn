@@ -1,0 +1,92 @@
+BEGIN_DESC
+Shuttle A races a DeltaGlider towards Luna-OB1.
+Lift-off to target, align planes, syncs, approaches and docks.
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 52006.7497330096
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship SH-02
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET SH-02
+  MODE Cockpit
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Map
+  REF Moon
+  BTARGET Brighton Beach
+  OTARGET Luna-OB1
+  TRACK ON
+END_MFD
+
+
+BEGIN_SHIPS
+Luna-OB1:Wheel
+  STATUS Orbiting Moon
+  RPOS -2068177.97 855187.34 -5.59
+  RVEL -565.577 -1367.779 -0.006
+  AROT 0.00 0.00 174.43
+  VROT -0.00 -0.00 10.00
+  IDS 0:560 100 1:564 100
+  XPDR 494
+END
+GL-NT:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:4
+  POS -33.4375000 41.1315932
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+END
+SH-02:ShuttleA
+  STATUS Landed Moon
+  BASE Brighton Beach:5
+  POS -33.4299197 41.1282965
+  HEADING 43.18
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0
+  XPDR 0
+  PODANGLE 0.0000 0.0000
+  DOCKSTATE 0 0.0000
+  AIRLOCK 0 0.0000
+  GEAR 0 0.0000
+  PAYLOAD MASS -0.0 0
+END
+END_SHIPS
+
+BEGIN_uap
+  >GL-NT:lift_off(mode=0,engine=hover,target=Luna-OB1),tools(type=0,key=g),
+  lift_off(mode=2,engine=main,target=Luna-OB1,pitch_tgt=40,pitch_duration=10,off_duration=0),
+  trans_orbit(engine=main,target=Luna-OB1,apoapsis=500000,periapsis=20000,ta=0),attitude(mode=2),
+  align(engine=main,target=Luna-OB1),
+  sync_orbit(engine=main,target=Luna-OB1,max_dv_to_use=150),
+  approach(engine=main,target=Luna-OB1,max_velocity=80,tgt_distance=2000),tools(type=0,key=k),
+  dock(target=Luna-OB1,port=0,with_port=0). 
+  >SH-02:lift_off(mode=0,engine=hover,target=Luna-OB1),tools(type=0,key=g),
+  lift_off(mode=2,engine=main,target=Luna-OB1,pitch_tgt=40,pitch_duration=10,off_duration=0),
+  trans_orbit(engine=main,target=Luna-OB1,apoapsis=500000,periapsis=20000,ta=0),attitude(mode=2),tools(type=2),attitude(mode=0),attitude(mode=2),
+  trans_orbit(engine=main,kind=1,apoapsis=500000),attitude(mode=2),
+  align(engine=main,target=Luna-OB1),
+  sync_orbit(engine=main,target=Luna-OB1,max_dv_to_use=150),
+  approach(engine=main,target=Luna-OB1,max_velocity=80,tgt_distance=2500),tools(type=0,key=k),
+  dock(target=Luna-OB1,port=1,with_port=0). 
+END

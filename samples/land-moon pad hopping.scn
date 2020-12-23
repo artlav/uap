@@ -1,0 +1,164 @@
+BEGIN_DESC
+DG hopping pads on the Moon. Watch in 10x!
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 52006.7485857989
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship GL-NT
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET GL-NT
+  MODE Extern
+  POS 60.72 71.73 16.89
+  TRACKMODE Ground Moon
+  GROUNDLOCATION -33.43668 41.11453 350.03
+  GROUNDDIRECTION 91.51 -48.80
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Orbit
+  PROJ Ship
+  FRAME Ecliptic
+  ALT
+  REF Moon
+END_MFD
+
+
+BEGIN_SHIPS
+ISS:ProjectAlpha_ISS
+  STATUS Orbiting Earth
+  RPOS 5695782.78 -3586235.72 -91486.93
+  RVEL -3847.015 -6184.016 2490.807
+  AROT 30.00 0.00 50.00
+  IDS 0:588 10 1:586 10 2:584 10 3:582 10 4:580 10
+  NAVFREQ 0 0
+  XPDR 466
+END
+Mir
+  STATUS Orbiting Earth
+  RPOS -3052209.48 362253.13 5922789.33
+  RVEL -6873.852 -215.630 -3524.536
+  AROT 0.00 -45.00 90.00
+  IDS 0:540 10 1:542 10 2:544 10
+  XPDR 482
+END
+Luna-OB1:Wheel
+  STATUS Orbiting Moon
+  RPOS -2007717.09 988826.40 -4.97
+  RVEL -653.955 -1327.793 -0.005
+  AROT 0.00 0.00 -96.76
+  VROT 0.00 -0.00 10.00
+  IDS 0:560 10 1:564 10
+  XPDR 494
+END
+PB-01:ShuttlePB
+  STATUS Landed Moon
+  BASE Brighton Beach:2
+  POS -33.4450804 41.1217033
+  HEADING 220.00
+  PRPLEVEL 0:1.000
+  NAVFREQ 484 124
+END
+GL-01:DeltaGlider
+  STATUS Landed Earth
+  BASE Habana:2
+  POS -82.3988276 22.9994604
+  HEADING 174.13
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+END
+GL-NT:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:4
+  POS -33.4375000 41.1315932
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+END
+GL-NT1:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:6
+  POS -33.429921 41.121702
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+END
+GL-NT2:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:3
+  POS -33.437500 41.118407
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+END
+GL-NT3:DeltaGlider
+  STATUS Landed Moon
+  BASE Brighton Beach:3
+  POS -33.445080 41.128297
+  HEADING 70.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0 0 0
+  XPDR 0
+  GEAR 1 1.0000
+  RCOVER 1 1.0000
+END
+SH-02:ShuttleA
+  STATUS Landed Moon
+  BASE Brighton Beach:5
+  POS -33.4299196 41.1282966
+  HEADING 43.18
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0
+  XPDR 0
+  PODANGLE 0.0000 0.0000
+  DOCKSTATE 0 0.0000
+  AIRLOCK 0 0.0000
+  GEAR 0 0.0000
+  PAYLOAD MASS -0.0 0
+END
+END_SHIPS
+
+BEGIN_uap
+ >GL-NT:lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.121702,tgt_lon=-33.429921),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.118407,tgt_lon=-33.437500),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.128297,tgt_lon=-33.445080),
+ lift_off(engine=hover,heading=70,altitude=100,mode=0),get_on_pad(engine=hover,tgt_lat=41.131593,tgt_lon=-33.4375).
+ >GL-NT1:lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.118407,tgt_lon=-33.437500),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.128297,tgt_lon=-33.445080),
+ lift_off(engine=hover,heading=70,altitude=100,mode=0),get_on_pad(engine=hover,tgt_lat=41.131593,tgt_lon=-33.4375),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.121702,tgt_lon=-33.429921).
+ >GL-NT2:lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.128297,tgt_lon=-33.445080),
+ lift_off(engine=hover,heading=70,altitude=100,mode=0),get_on_pad(engine=hover,tgt_lat=41.131593,tgt_lon=-33.4375),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.121702,tgt_lon=-33.429921),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.118407,tgt_lon=-33.437500).
+ >GL-NT3:lift_off(engine=hover,heading=70,altitude=100,mode=0),get_on_pad(engine=hover,tgt_lat=41.131593,tgt_lon=-33.4375),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.121702,tgt_lon=-33.429921),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.118407,tgt_lon=-33.437500),
+ lift_off(engine=hover,heading=70,altitude=40,mode=0),get_on_pad(engine=hover,tgt_lat=41.128297,tgt_lon=-33.445080).
+END

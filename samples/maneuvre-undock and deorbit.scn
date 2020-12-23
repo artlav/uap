@@ -1,0 +1,67 @@
+BEGIN_DESC
+Undock from ISS and deorbit
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 51982.0302246079
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship GL-02
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET GL-02
+  MODE Cockpit
+  FOV 60.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Docking
+  NAV 0
+END_HUD
+
+BEGIN_MFD Left
+  TYPE User
+  MODE UAP MFD
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Orbit
+  PROJ Ship
+  FRAME Ecliptic
+  ALT
+  REF Earth
+  TARGET ISS
+END_MFD
+
+BEGIN_PANEL
+END_PANEL
+
+BEGIN_SHIPS
+ISS:ProjectAlpha_ISS
+  STATUS Orbiting Earth
+  ELEMENTS 6734919 0.0009 74.513 169.034 328.305 122.0 51544.5
+  AROT -110.00 -15.00 -84.00
+  DOCKINFO 1:0,GL-02
+END
+GL-02:DeltaGlider
+  STATUS Orbiting Earth
+  DOCKINFO 0:1,ISS
+  NAVFREQ 2 466 0 0
+  FUEL 1.000
+  GEAR 0 0.0
+  NOSECONE 1 1.0
+  RCOVER 1 1.0000
+  AIRLOCK 0 0.0000
+  SKIN BLUE
+END
+END_SHIPS
+
+BEGIN_uap
+  >GL-02:tools(type=6,key=0,param=1,wait=0,target=),
+  maneuvre(engine=retro,mode=0,target=ISS,orientation=3,dv=100,dt=4,level=1),
+  tools(type=0,key=k),
+  maneuvre(engine=main,mode=1,target=,orientation=1,dv=200,dt=10,level=1). 
+END

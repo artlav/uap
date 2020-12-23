@@ -1,0 +1,190 @@
+Orbiter Universal Autopilots alpha v0.3.1 (110613), Made in 2011 by Artlav
+------------------------------------------------------------------------------------------
+
+Orbiter Universal Autopilots is a framework for writing and running universal and sequence-able autopilots in Orbiter. If you heard about Redshift by Bernd R. Fix., UAP is something similar, but much better.
+
+What can it be used for?
+ From the player point of view, it's an MFD that one can use to define a series of actions to be performed on the current vessel, like lift off, climb to orbit, wait for apoapsis, circularize.
+ - The sequence of autopilots run fully automatic, starting next one as the previous completes.
+ - It is designed to be saved to scenario at any point, and be resumed correctly on reload.
+ - The framework allows autopilots to be orientation – independent, thus, ascent autopilot can be run with any engine, for example.
+
+ From a developer point of view, it could have been a nice framework for writing autopilots, but unless there is a noticeable interest in it, no SDK release is planned.
+
+How to use it?
+ Simple. Enable uap module in the launchpad, use the UAP MFD.
+
+Using UAP MFD
+ UAP MFD is opened by Shift+B.
+ - It shows the status of the UAP system for current vessel.
+ - The system is MFD-independent, the autopilots will run regardless of which MFD's are open and on which vessels.
+
+Keys:
+ The key scheme resembles TransX – there are steps in a sequence, and there are variables for each step.
+ - STP, S - Stop current sequence
+ - PG , P - Switch page. Each page have separate functions on it.
+ -  < , < - Previous variable, previous AP in insert list
+ -  > , > - Next variable, next AP in insert list
+ - ENT, E - Enter new value for current variable, select highlighted action
+ - GO , G - Start the sequence
+ - PRV, R - Previous step in the sequence
+ - NXT, F - Next step in the sequence
+ - INS, I - Insert step into sequence
+ - DEL, D - Remove step from sequence
+ -  ^ , [ - Move selected step up
+ -  v , ] - Move selected step down
+ -    , A - Toggle between auto time accel, disable time accel limits, and limit time accel
+ -    , T - Up time accel if limited, in auto time accel mode
+
+
+Sequence page
+ On this page you can edit or define the sequence of autopilots for current vessel.
+ Keys used: INS, DEL, ^, v, PRV, NXT.
+ INS adds new step after selected, or creates the sequence if none are defined.
+
+ After pressing INS the AP selection menu will open.
+ Select with < and >, end confirm with ENT.
+
+
+Input variables page
+ Here one can change or view the variables of the current AP in the sequence.
+ - The APs are cycled by PRV and NXT, variables are selected by < and >.
+ - Pressing ENT will open the input prompt for the highlighted variable.
+ - Changing input variables is not possible for completed or running APs
+ - Yellow variables are info variables, that shows information about the things current AP is doing. These cannot be edited.
+
+
+Status page
+ Status page shows the state of the current sequence and the variables of the step being executed.
+ As in input page, green are user inputted variables and yellow are info variables.
+
+Scenario files
+ The sequences are stored in the scenario files in uap section in strings like one below:
+ >GL-NT:lift_off(mode=0,engine=hover,heading=70),tools(type=0,key=g).
+ The format is simple:
+ - First symbol defines if the sequence is running (>) or not ($).
+ - The vessel name, followed by :
+ - A list of autopilots with variables in (), separated by comas.
+ - A . at the end.
+ - Variables are name=value string, separated by comas
+ - Lines can be broken at any point to enhance readability
+
+
+
+Autopilot descriptions
+
+Lift-off autopilot
+ Gets the vessel off the pad, either in vertical climb or in hover to altitude.
+ Can perform roll and pitch open-loop guidance
+ - engine specifies the engine to use
+ - target specifies the target vessel to align into a plane of
+ - mode defines what to do:
+ - - 0 is hover to altitude and turn to heading
+ - - 1 is boost at full and turn to heading
+ - - 2 is boost, turn to heading and pitch down/up
+ - - 3 is hover on main and hover engines, pitching up
+ - heading is desired launch heading
+ - pitch_tgt is final pitch for mode 2
+ - pitch_duration is the time to perform pitch maneuver for
+ - off_duration is the time between lift-off and start of roll
+ - mode_is deciphers the mode variable
+
+Get on pad autopilot
+ Lands a vessel at a given location on an airless world. Could do it from orbit, but takes manual timing.
+ - engine specifies the engine to use
+ - tgt_lat is the latitude
+ - tgt_lon is the longitude
+
+Runway take-off autopilot
+ Gets the vessel off the runway, and turns to desired heading
+ - engine specifies the engine to use
+ - thrust specifies thrust level to use, fuel saving
+ - altitude defines the altitude to stop above
+ - v1 defines take-off speed
+ - heading is desired launch heading
+ - gear_key is the key to close landing gears with
+
+Aerial state hold autopilot
+ Keeps the vessel in the atmosphere at given altitude, speed and heading, with given rates of them.
+ - engine specifies the engine to use
+ - altitude defines the altitude to hold
+ - velocity defines speed to hold
+ - heading is heading to hold
+ - alt_rate defines the altitude change rate
+ - vel_rate defines speed change rate
+ - hdg_rate is heading change rate
+ - onoff defines what to hold - 1 is altitude, 2 is heading, 4 is speed (bit field, 1+2=3 - hold heading and altitude, for example)
+
+Trans-orbit autopilot
+ Gets you from one orbit to another with the same plane, or from suborbital trajectory to orbit with a given plane.
+ - engine specifies the engine to use
+ - target specifies the target vessel to align into a plane of
+ - heading is desired launch heading if no target is set, or -1 if doesn't matter
+ - apoapsis defines apoapsis altitude
+ - periapsis defines periapsis altitude
+ - kind defines what kind of guidance is expected - 0 means apoapsis and periapsis are defined, 1 means only apoapsis is defined
+ - ta defines true anomaly (angle from periapsis) to put the vessel at
+
+Hohmann autopilot
+ Gets you from an orbit of a planet to an orbit of its moon
+ - engine specifies the engine to use
+ - target specifies the target moon/planet to go to
+ - tgt_orbit_alt defines the altitude of the orbit around destination
+
+Align planes autopilot
+ Aligns vessel orbital plane with the target.
+ - engine specifies the engine to use
+ - target specifies the target object to align into a plane of
+ - rinc_delta is the inclination difference to stop at
+
+Sync orbits autopilot
+ Performs orbit phasing to put you and your target at the same point in space-time.
+ Only works if your orbit is below the target orbit
+ - engine specifies the engine to use
+ - target specifies the target vessel to align into a plane of
+ - max_dv_to_use is the maximum delta-v to use in planning the maneuver
+ - tgt_distance is the distance to target that is considered as success
+ - minimize specifies what should be the main parameter:
+ - - 0 is use minimum Delta-V
+ - - 1 is go for minimum time to sync
+ - - 2 is try for maximum precision
+
+Approach autopilot
+ Moves your vessel withing a given distance from the target
+ - engine specifies the engine to use
+ - target specifies the target vessel to align into a plane of
+ - max_velocity is the maximum velocity in approach
+ - tgt_distance is the distance to target that is considered as success
+
+Docking autopilot
+ Docks the vessel to the target near-by
+ - target specifies what to dock with
+ - port is the port to dock to
+ - with_port is the port on our vessel to use
+
+Tools "autopilot"
+ Performs various functions, like key presses or waiting.
+ It does only ONE thing, not a mix of them - i.e. no wait and key press, either wait or press key.
+ - mode defines what to do
+    - 0 is key press on target (or you if blank)
+    - 1 is wait for time dt
+    - 2 is wait till at apoapsis
+    - 3 is wait till at periapsis
+    - 4 is start target sequence
+    - 5 is wait for target vessel's sequence to complete
+    - 6 is undock
+    - 7 is make noise
+    - 8 is wait for less distance
+    - 9 is wait for more distance
+ - target specifies the target vessel for triggering
+ - param is the sound to make
+ - key is the key to be pressed
+ - dt is time to wait, or a distance to wait for
+
+Maneuvre autopilot
+ - Burn dt
+ - Burn dv
+    - Orientation prograde, retrograde, from or towards target
+
+Attitude autopilots
+ Performs attitude maneuvers. So far can only point prograde, retrograde and kill rotation.

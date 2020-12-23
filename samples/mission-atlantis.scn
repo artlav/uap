@@ -1,0 +1,86 @@
+BEGIN_DESC
+Atlantis launch towards ISS
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 51983.6270768983
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship STS-101
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET STS-101
+  MODE Extern
+  POS 8.98 62.87 29.23
+  TRACKMODE GlobalFrame
+  FOV 50.00
+  BEGIN_PRESET
+    Cockpit:STS-101:40.00
+    Ground:STS-101:40.00:Earth -80.62339 28.61960 110.00
+    Track:STS-101:50.00:RELATIVE 2.890 -0.009 -1.229
+    Ground:STS-101:10.00:Earth -80.65298 28.58028 20.00
+    Track:ISS:40.00:RELATIVE 1.983 -0.474 -0.522
+    Track:Earth:40.00:GLOBAL 2.896 2.132 -0.331
+  END_PRESET
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE Surface
+  SPDMODE 1
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Orbit
+  PROJ Ship
+  FRAME Ecliptic
+  REF Earth
+END_MFD
+
+
+BEGIN_SHIPS
+ISS:ProjectAlpha_ISS
+  STATUS Orbiting Earth
+  RPOS 3088282.10 3085789.51 -5124214.12
+  RVEL 3934.939 4338.400 4993.404
+  AROT -149.69 7.39 -152.69
+  PRPLEVEL 0:1.000
+  IDS 0:1 100 1:2 100 2:3 100 3:4 100 4:5 100
+  NAVFREQ 0 0
+  XPDR 466
+END
+STS-101:Atlantis
+  STATUS Landed Earth
+  BASE Cape Canaveral:11
+  POS -80.6208900 28.6271740
+  HEADING 2.00
+  PRPLEVEL 0:1.000 1:1.000 2:1.000
+  NAVFREQ 0 0
+  CONFIGURATION 0
+  CARGODOOR 0 0.0000
+  GEAR 0 0.0000
+  KUBAND 0 0.0000
+  ARM_STATUS 0.5000 0.0000 0.0000 0.5000 0.5000 0.5000
+  CARGO_STATIC_MESH Carina_cradle
+  CARGO_STATIC_OFS 0.000 -1.650 0.050
+END
+Carina:Carina
+  STATUS Landed Earth
+  ATTACHED 0:0,STS-101
+END
+END_SHIPS
+
+BEGIN_uap
+  >STS-101:lift_off(mode=2,engine=maininv,target=ISS,pitch_tgt=20,pitch_duration=110,off_duration=10),
+  trans_orbit(engine=maininv,apoapsis=200000,periapsis=200000,ta=0,target=ISS),tools(type=0,key=k),
+  align(target=ISS),
+  sync_orbit(engine=main,target=ISS,max_dv_to_use=80),
+  approach(engine=main,target=ISS,max_velocity=20,tgt_distance=1500),
+  dock(target=ISS,port=0,with_port=0). 
+END

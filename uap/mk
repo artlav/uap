@@ -1,0 +1,3 @@
+g++ -m32 -fPIC -Ialibc -Wno-write-strings -c *.cpp alibc/util.cpp
+g++ -m32 -shared -Wl,-soname,libuap.so.1 -o ../libuap.so *.o
+rm *.o

@@ -1,0 +1,75 @@
+BEGIN_DESC
+Falcon 9 with Dragon Spacecraft in cargo configuration (unmanned) flying to ISS
+END_DESC
+
+BEGIN_ENVIRONMENT
+  System Sol
+  Date MJD 55062.8444949746
+END_ENVIRONMENT
+
+BEGIN_FOCUS
+  Ship Falcon9
+END_FOCUS
+
+BEGIN_CAMERA
+  TARGET Falcon9
+  MODE Extern
+  POS 12.42 -91.44 43.09
+  TRACKMODE GlobalFrame
+  FOV 50.00
+END_CAMERA
+
+BEGIN_HUD
+  TYPE Surface
+END_HUD
+
+BEGIN_MFD Left
+  TYPE Surface
+  SPDMODE 1
+END_MFD
+
+BEGIN_MFD Right
+  TYPE Map
+  REF Earth
+  BTARGET Cape Canaveral
+  OTARGET ProjectAlpha_ISS
+  ZOOM
+  TRACK ON
+END_MFD
+
+
+BEGIN_SHIPS
+Falcon9:Falcon9\Falcon9
+  STATUS Landed Earth
+  POS -80.5750000 28.5535000
+  HEADING 42.00
+  PRPLEVEL 0:1.000 1:1.000
+  NAVFREQ 0 0
+  CONFIG_FILE Config\Falcon9\Falcon9.ini
+  GUIDANCE_FILE Config\Falcon9\Falcon9_GNC-ISS.txt
+  CONFIGURATION 0
+  STAGE_STATE 2
+  STAGE_IGNITION_TIME 0.000
+  CURRENT_BOOSTER 1
+  CURRENT_STAGE 1
+  CURRENT_INTERSTAGE 1
+  CURRENT_PAYLOAD 1
+  FAIRING 1
+END
+ProjectAlpha_ISS
+  STATUS Orbiting Earth
+  RPOS 1852340.77 6125032.95 -2087473.17
+  RVEL 7263.283 -2446.687 -716.817
+  AROT 29.29 0.89 49.49
+  PRPLEVEL 0:0.400
+  IDS 0:588 100 1:586 100 2:584 100 3:582 100 4:580 100
+  NAVFREQ 0 0
+  XPDR 466
+END
+END_SHIPS
+
+BEGIN_uap
+  >Falcon9:lift_off(engine=main,target=ProjectAlpha_ISS,pitch_tgt=30,pitch_duration=130,off_duration=5,mode=2),
+  trans_orbit(target=ProjectAlpha_ISS). 
+END
+
